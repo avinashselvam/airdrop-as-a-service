@@ -2,6 +2,8 @@
 Solution for the superteamDAO bounty by Solrazr
 https://superteam.fun/500-bounties/airdrop-as-a-service-dev-bounty
 
+!!! A small bug is causing big transactions fail. Fixing it rn
+
 ## How to test
 
 #### Mint a token 

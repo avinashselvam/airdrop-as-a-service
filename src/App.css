@@ -1,0 +1,107 @@
+.App {
+    
+
+}
+
+p {
+    font-size: 14px;
+    margin: 4px;
+}
+
+h3 {
+    font-size: 14px;
+    margin: 4px;
+    font-weight: 400;
+    color:gray;
+}
+
+h4 {
+    margin: 4px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+#privatekey {
+    width: 47vw;
+}
+
+#token {
+    width: 47vw;
+}
+
+input[type=text], input[type=password] {
+    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+    padding: 16px 16px 8px 8px;
+    font-size: 16px;
+    background-color: rgba(234, 240, 245, 0.5);
+    border: none;
+    border-bottom: 2px solid lightgray;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    outline: none;
+    border-bottom: 2px solid black;
+}
+
+input[type=file] {
+   display: none;
+}
+
+.inputs {
+    /* box-shadow: 8px 8px 0px 3px black; */
+    border-radius: 15px;
+    background-color: white;
+    /* display: flex; */
+    /* flex-direction: column; */
+    height: 90vh;
+    width: 50vw;
+    max-width: 1200px;
+    padding: 2vh 2vw;
+    margin: 2vh 23vw;
+}
+
+button {
+    font-family: "Roboto Mono", monospace;
+    border: none;
+    width: 100%;
+}
+
+a {
+    font-size: 14px;
+    margin: 4px;
+    color: black;
+    text-decoration: underline;
+}
+
+.error {
+    color: red;
+}
+
+.step {
+    margin: 6vh 0;
+}
+
+.upload, button {
+    font-size: 14px;
+    display: inline-block;
+    margin: 4px;
+    padding: 8px 16px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    /* border: 1px solid black; */
+}
+
+button:disabled {
+    background-color: gray;
+    cursor: default;
+}
+
+.header * {
+    display: inline-block;
+}
+
+.header a {
+    float: right;
+}

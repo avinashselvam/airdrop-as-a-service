@@ -27,6 +27,8 @@ Fixed. ~~A small bug is causing big transactions fail. Fixing it rn~~
 
 visit https://airdropsol.web.app/
 
+PS: If you're checking it out, you need to allow insecure content in site settings, otherwise connection to devnet isn't happening.
+
 Watch this video for an easy overview
 https://drive.google.com/file/d/1EH-4t4xdpvcYWctfV1TDl3fHL5L5-Mgo/view?usp=sharing
 

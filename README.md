@@ -23,6 +23,8 @@ https://superteam.fun/500-bounties/airdrop-as-a-service-dev-bounty
 
 ## How to Use
 
+visit https://airdropsol.web.app/
+
 Watch this video for an easy overview
 https://drive.google.com/file/d/1EH-4t4xdpvcYWctfV1TDl3fHL5L5-Mgo/view?usp=sharing
 

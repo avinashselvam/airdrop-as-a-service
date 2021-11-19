@@ -31,6 +31,7 @@ function App() {
 
   const [filename, setFilename] = useState(null)
 
+  const [createdTransactions, setCreatedTransactions] = useState(0)
   const [currentTransaction, setCurrentTransaction] = useState(0)
   const [successfulTransactions, setSuccessfulTransactions] = useState(0)
   const [failedTransactions, setFailedTransactions] = useState(0)
@@ -150,21 +151,39 @@ function App() {
   }
 
   const makeTransactionList = async (tokenDetails, fromDetails, airdropList) => {
-    
-    const transactions = await Promise.all(airdropList.map(async (entry) => {
-      const [toPublicKeyString, amount] = entry
+    let transactions = []
+    const processAirdrop = async (idx) => {
+      if (idx === airdropList.length) return transactions
+      setCreatedTransactions(idx+1)
+      const [toPublicKeyString, amount] = airdropList[idx]
+      console.log(`Creating transaction for ${toPublicKeyString} of amount ${amount}`)
       const toDetails = new PublicKey(toPublicKeyString)
       try {
         const instructions = await createInstructionsForTransaction(tokenDetails, fromDetails, toDetails, amount)
         const transaction = await makeTransaction(instructions)
-        return transaction
+        transactions.push(transaction)
+        return processAirdrop(idx+1)
       } catch (error) {
         console.log(error)
       }
-    }))
-    return transactions
-
+    }
+    return processAirdrop(0)
   }
+    
+  //   const transactions = await Promise.all(airdropList.map(async (entry) => {
+  //     const [toPublicKeyString, amount] = entry
+  //     const toDetails = new PublicKey(toPublicKeyString)
+  //     try {
+  //       const instructions = await createInstructionsForTransaction(tokenDetails, fromDetails, toDetails, amount)
+  //       const transaction = await makeTransaction(instructions)
+  //       return transaction
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }))
+  //   return transactions
+
+  // }
 
   const process = async (tokenDetails, fromDetails, airdropList) => {
 
@@ -184,14 +203,13 @@ function App() {
       setCurrentTransaction(idx+1)
       const signedTransaction = signedTransactions[0]
       try {
-        console.log("sofar", sofar)
         const signature = await connection.sendTransaction(signedTransaction, [signer], { skipPreflight: true })
         const response = await connection.confirmTransaction(signature)
         const passed = response !== null
         // console.log([...airdropList[idx], signature,  ? "pass" : "fail"])
         logs.push([...airdropList[idx], signature, passed ? "pass" : "fail"])
         if(passed) {
-          console.log(successfulTransactions, idx, passed)
+          console.log(`Transaction : ${airdropList[idx][1]} to ${airdropList[idx][0]} with signature ${signature} ${passed ? "was successful" : "failed verification"}`)
           sofar += 1
           setSuccessfulTransactions(sofar)
         }
@@ -327,7 +345,7 @@ function App() {
   const step5 = () => <div className="step">
     <button disabled={!(fromPublicKey && isValidPrivateKey && isValidMintAddress) || isProcessing} onClick={start}>Start</button>
     {isProcessing && <div>
-        <p>Processing {currentTransaction} of {totalTransactions} transactions. Success: {successfulTransactions} Failed: {currentTransaction-successfulTransactions-1}</p>
+        <p>{createdTransactions} transactions created. Processing {currentTransaction} of {totalTransactions} transactions. Success: {successfulTransactions} Failed: {currentTransaction-successfulTransactions-1}</p>
       </div>}
     {downloadHref && <div>
         <p>Done. <a href={downloadHref} download="airdrop_results.csv">Download Results</a></p>

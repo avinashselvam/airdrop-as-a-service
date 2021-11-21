@@ -2,20 +2,18 @@
 Solution for the superteamDAO bounty by Solrazr
 https://superteam.fun/500-bounties/airdrop-as-a-service-dev-bounty
 
-Fixed. ~~A small bug is causing big transactions fail. Fixing it rn~~
-
 ## How to test
 
 #### Mint a token 
 
 1. Install `solana cli` and `spl-token cli`
-2. Set solana config to devnet
-3. Generate a user using `solana keygen` command
-4. Mint and supply a token using `spl-token` as mentioned here
+2. Set solana config to devnet using `solana config set --devnet`
+3. Generate a user using `solana keygen` command. This sets the default user for the cli
+4. Mint and supply a token using `spl-token` as mentioned here https://spl.solana.com/token
 
 #### Import this user into Phantom wallet
 
-1. `cat /Users/avinash/.config/solana/id.json`
+1. Use this command `cat /Users/avinash/.config/solana/id.json` to print out the private key
 2. Encode the array to a string using base 58
 3. Open Phantom -> Add/Connect Wallet -> Import Private Key -> Paste the string
 
@@ -25,12 +23,14 @@ Fixed. ~~A small bug is causing big transactions fail. Fixing it rn~~
 
 ## How to Use
 
-visit https://airdropsol.web.app/
+If you have already minted a token and would now like to airdrop them, visit https://airdropsol.web.app/
 
 PS: If you're checking it out, you need to allow insecure content in site settings, otherwise connection to devnet isn't happening.
 
 Watch this video for an easy overview
 https://drive.google.com/file/d/1EH-4t4xdpvcYWctfV1TDl3fHL5L5-Mgo/view?usp=sharing
+
+![screenshot][app.png]
 
 1. Connect to Phatom wallet using the connect to wallet button. This provides the app access to the public address
 2. You also need to provide the private key to sign the transcations and to pay for account creator if the destination address doesn't have an associated token account
